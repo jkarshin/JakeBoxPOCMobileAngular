@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ConnectionFormComponent } from '../connection-form/connection-form.component';
 import { UIRouterModule } from '@uirouter/angular';
+import { StateService } from '@uirouter/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialExampleModule } from '../material.module';
 
 const connectionFormState = {
   name: 'connectionForm',
@@ -13,8 +16,10 @@ const connectionFormState = {
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    MaterialExampleModule,
     UIRouterModule.forRoot({
       states: [connectionFormState],
       useHash: true,
@@ -23,4 +28,8 @@ const connectionFormState = {
   declarations: [AppComponent, ConnectionFormComponent],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(stateService: StateService) {
+    stateService.go('connectionForm');
+  }
+}

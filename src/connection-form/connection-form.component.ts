@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connection-form.component.css'],
 })
 export class ConnectionFormComponent implements OnInit {
-  constructor() {}
+  name: string;
 
   ngOnInit() {}
 }
