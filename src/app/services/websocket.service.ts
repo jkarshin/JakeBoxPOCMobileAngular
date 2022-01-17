@@ -10,6 +10,7 @@ export interface Handlers {
 
 @Injectable({ providedIn: 'root' })
 export class WebsocketService {
+  // TODO, might not need reference as field?
   private websocket: WebSocket;
 
   constructor() {}

@@ -9,6 +9,7 @@ import { ControllerService } from '../../services/controller.service';
   styleUrls: ['./connection-form.component.css'],
 })
 export class ConnectionFormComponent implements OnInit {
+  // TODO: Consider making field values persistent
   name: string;
   connectionSettings: ConnectionSettings = {};
 
