@@ -19,4 +19,8 @@ export class ConnectionFormComponent implements OnInit {
     this.port = defaultConnectionSettings.port;
     this.path = defaultConnectionSettings.path;
   }
+
+  isButtonDisabled() {
+    return !(this.name && this.protocol && this.host && this.port && this.path);
+  }
 }
