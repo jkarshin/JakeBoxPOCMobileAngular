@@ -8,6 +8,7 @@ import { StateService } from '@uirouter/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialExampleModule } from './material.module';
 import { ConnectionFormComponent } from '../components/connection-form/connection-form.component';
+import { CloseableDialogComponent } from '../components/closeable-dialog/closeable-dialog.component';
 
 const connectionFormState = {
   name: 'connectionForm',
@@ -25,7 +26,7 @@ const connectionFormState = {
       useHash: true,
     }),
   ],
-  declarations: [AppComponent, ConnectionFormComponent],
+  declarations: [AppComponent, CloseableDialogComponent, ConnectionFormComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {
