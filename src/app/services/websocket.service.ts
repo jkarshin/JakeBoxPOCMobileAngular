@@ -10,7 +10,6 @@ export interface Handlers {
 
 @Injectable({ providedIn: 'root' })
 export class WebsocketService {
-  // TODO, might not need reference as field?
   private websocket: WebSocket;
 
   constructor() {}
@@ -24,22 +23,37 @@ export class WebsocketService {
         handlers.onOpen();
       };
       this.websocket.onclose = (event) => {
-        console.log(`Websocket was closed: ${event}`);
+        console.log('Websocket was closed.');
+        console.log(event);
         handlers.onClose(event);
       };
       this.websocket.onerror = (event) => {
-        console.log(`Websocket received an error: ${event}`);
+        console.error('Websocket received an error');
+        console.error(event);
         handlers.onError(event);
       };
       this.websocket.onmessage = (message) => {
-        console.log(`Websocket received message: ${message.data}`);
+        console.log('Websocket received message');
+        console.log(message.data);
         handlers.onMessage(message.data);
       };
     } catch (error) {
-      console.log(
+      console.error(
         `Encountered error while attempting to open Websocket: ${error}`
       );
       handlers.onConnectionError(error);
     }
+  }
+
+  send(message: string) {
+    if (!this.websocket) {
+      console.warn('Attempted to send message but websocket is not open.');
+      console.warn(message);
+      return;
+    }
+
+    console.log('Sending message...');
+    console.log(message);
+    this.websocket.send(message);
   }
 }
