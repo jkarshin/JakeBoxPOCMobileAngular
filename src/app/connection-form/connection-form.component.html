@@ -1,0 +1,38 @@
+<div class="form">
+  <span class="mat-display-1">Welcome to JakeBox!</span>
+  <mat-form-field class="text-field" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [(ngModel)]="name" />
+  </mat-form-field>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Connection Settings</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field class="text-field" appearance="fill">
+      <mat-label>Protocol</mat-label>
+      <mat-select [(ngModel)]="protocol">
+        <mat-option value="ws">ws</mat-option>
+        <mat-option value="wss">wss</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="text-field" appearance="fill">
+      <mat-label>Host</mat-label>
+      <input matInput type="text" [(ngModel)]="host" />
+    </mat-form-field>
+
+    <mat-form-field class="text-field" appearance="fill">
+      <mat-label>Port</mat-label>
+      <input matInput type="number" min="1" [(ngModel)]="port" />
+    </mat-form-field>
+
+    <mat-form-field class="text-field" appearance="fill">
+      <mat-label>Path</mat-label>
+      <input matInput type="text" [(ngModel)]="path" />
+    </mat-form-field>
+  </mat-expansion-panel>
+
+  <button class="button" mat-raised-button color="primary">Connect</button>
+</div>
