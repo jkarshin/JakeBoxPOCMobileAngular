@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { NextObserver, Observable, tap } from 'rxjs';
 import { WebSocketSubject } from 'rxjs/webSocket';
 
 /**
@@ -25,15 +25,26 @@ export class WebSocketService {
    * if the existing connection is for a different url!)
    *
    * Once a connection is closed, consumers will need to re-subscribe.
+   *
+   * TODO update this text for correctness
+   * The supplied openObserverArg will be invoked when the connection is established.
+   * The supplied closeObserverArg will be invoked when an open connection is closed. It will
+   * NOT be invoked if the initial connection attempt fails. Instaed, an onError notification
+   * will be sent through messages$.
    */
-  public connect(url: string): void {
+  public connect(
+    url: string,
+    openObserverArg: NextObserver<Event>,
+    closeObserverArg: NextObserver<CloseEvent>
+  ): void {
     if (!this.socket$ || this.socket$.closed) {
       console.log(`Attempting to connect to: ${url}`);
       this.socket$ = new WebSocketSubject({
         url,
         openObserver: {
-          next: () => {
+          next: (event) => {
             console.log(`Successfully connected to ${url}`);
+            openObserverArg.next(event);
           },
         },
         closeObserver: {
@@ -41,6 +52,7 @@ export class WebSocketService {
             console.log(
               `WS connection closed; code: ${closeEvent.code} reason: ${closeEvent.reason}`
             );
+            closeObserverArg.next(closeEvent);
           },
         },
       });

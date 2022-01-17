@@ -12,7 +12,7 @@
 
     <mat-form-field class="text-field" appearance="fill">
       <mat-label>Protocol</mat-label>
-      <mat-select [(ngModel)]="protocol">
+      <mat-select [(ngModel)]="connectionSettings.protocol">
         <mat-option value="ws">ws</mat-option>
         <mat-option value="wss">wss</mat-option>
       </mat-select>
@@ -20,17 +20,22 @@
 
     <mat-form-field class="text-field" appearance="fill">
       <mat-label>Host</mat-label>
-      <input matInput type="text" [(ngModel)]="host" />
+      <input matInput type="text" [(ngModel)]="connectionSettings.host" />
     </mat-form-field>
 
     <mat-form-field class="text-field" appearance="fill">
       <mat-label>Port</mat-label>
-      <input matInput type="number" min="1" [(ngModel)]="port" />
+      <input
+        matInput
+        type="number"
+        min="1"
+        [(ngModel)]="connectionSettings.port"
+      />
     </mat-form-field>
 
     <mat-form-field class="text-field" appearance="fill">
       <mat-label>Path</mat-label>
-      <input matInput type="text" [(ngModel)]="path" />
+      <input matInput type="text" [(ngModel)]="connectionSettings.path" />
     </mat-form-field>
   </mat-expansion-panel>
 
@@ -39,6 +44,7 @@
     mat-raised-button
     color="primary"
     [disabled]="isButtonDisabled()"
+    (click)="connect()"
   >
     Connect
   </button>

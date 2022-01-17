@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import defaultConnectionSettings from '../../../assets/default-connection-settings.json';
+import { ConnectionSettings } from '../../model/connection-settings';
+import { ControllerService } from '../../services/controller.service';
 
 @Component({
   selector: 'app-connection-form',
@@ -8,26 +10,27 @@ import defaultConnectionSettings from '../../../assets/default-connection-settin
 })
 export class ConnectionFormComponent implements OnInit {
   name: string;
-  protocol: string;
-  host: string;
-  port: number;
-  path: string;
+  connectionSettings: ConnectionSettings = {};
+
+  constructor(private controllerService: ControllerService) {}
 
   ngOnInit() {
-    this.protocol = defaultConnectionSettings.protocol;
-    this.host = defaultConnectionSettings.host;
-    this.port = defaultConnectionSettings.port;
-    this.path = defaultConnectionSettings.path;
+    this.connectionSettings = defaultConnectionSettings;
   }
 
   isButtonDisabled() {
-    return !(this.name && this.protocol && this.host && this.port && this.path);
+    return !(
+      this.name &&
+      this.connectionSettings.protocol &&
+      this.connectionSettings.host &&
+      this.connectionSettings.port &&
+      this.connectionSettings.path
+    );
   }
 
-  /**
-   * TODO:
-   *
-   * On connect click: attempt to connect via websocket service.
-   * OnFail, show a dialog; OnSuccess, subscribe to listen for messages, send connection request.
-   */
+  connect() {
+    let url = `${this.connectionSettings.protocol}://${this.connectionSettings.host}:${this.connectionSettings.port}/${this.connectionSettings.path}`;
+    console.log(`Derived url: ${url}`);
+    this.controllerService.connect(this.name, url);
+  }
 }
