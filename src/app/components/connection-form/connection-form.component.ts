@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import defaultConnectionSettings from '../../assets/default-connection-settings.json';
+import defaultConnectionSettings from '../../../assets/default-connection-settings.json';
 
 @Component({
   selector: 'app-connection-form',
@@ -23,4 +23,11 @@ export class ConnectionFormComponent implements OnInit {
   isButtonDisabled() {
     return !(this.name && this.protocol && this.host && this.port && this.path);
   }
+
+  /**
+   * TODO:
+   *
+   * On connect click: attempt to connect via websocket service.
+   * OnFail, show a dialog; OnSuccess, subscribe to listen for messages, send connection request.
+   */
 }
