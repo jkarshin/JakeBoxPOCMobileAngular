@@ -35,6 +35,6 @@ export class LobbyAsLeaderComponent {
 
   startGame() {
     this.sharedProgressSpinner.open();
-    this.websocketService.send(createStartGameMessage(2));
+    this.websocketService.send(createStartGameMessage(this.value));
   }
 }
