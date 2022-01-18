@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StateService } from '@uirouter/core';
 import { CloseableDialogComponent } from '../components/closeable-dialog/closeable-dialog.component';
-import { ProgressSpinnerDialogComponent } from '../components/progress-spinner-dialog/progress-spinner-dialog.component';
 import {
   createClientConnectionRequestString,
   deserializeMessage,

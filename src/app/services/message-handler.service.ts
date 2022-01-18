@@ -52,6 +52,7 @@ export class MessageHandlerService {
 
     handler(message);
 
+    // TODO Technically, this should be called wheneve the UI Router state changes (not necessarily true for child states)
     if (message.type != PingMessage.TYPE) {
       this.sharedProgressSpinner.close();
     }

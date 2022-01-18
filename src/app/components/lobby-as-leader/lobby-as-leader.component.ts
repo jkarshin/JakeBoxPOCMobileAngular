@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Transition } from '@uirouter/core';
 import { LeaderDetailsMessage } from '../../model/inbound-messages';
+import { SharedProgressSpinnerService } from '../../services/shared-data/shared-progress-spinner.service';
 import { WebsocketService } from '../../services/websocket.service';
 import { createStartGameMessage } from '../../utils/message-utils';
 
@@ -15,7 +16,11 @@ export class LobbyAsLeaderComponent {
   max: number;
   value: number;
 
-  constructor(trans: Transition, private websocketService: WebsocketService) {
+  constructor(
+    trans: Transition,
+    private websocketService: WebsocketService,
+    private sharedProgressSpinner: SharedProgressSpinnerService
+  ) {
     let message: LeaderDetailsMessage = trans.params().message;
 
     /**
@@ -29,6 +34,7 @@ export class LobbyAsLeaderComponent {
   }
 
   startGame() {
+    this.sharedProgressSpinner.open();
     this.websocketService.send(createStartGameMessage(2));
   }
 }

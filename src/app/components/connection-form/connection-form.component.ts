@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import defaultConnectionSettings from '../../../assets/default-connection-settings.json';
 import { ConnectionSettings } from '../../model/connection-settings';
 import { ControllerService } from '../../services/controller.service';
 import { SharedProgressSpinnerService } from '../../services/shared-data/shared-progress-spinner.service';
-import { ProgressSpinnerDialogComponent } from '../progress-spinner-dialog/progress-spinner-dialog.component';
 
 @Component({
   selector: 'app-connection-form',
@@ -36,12 +34,6 @@ export class ConnectionFormComponent implements OnInit {
   }
 
   connect() {
-    // Show a progress spinner
-    // let dialogRef: MatDialogRef<ProgressSpinnerDialogComponent> =
-    //   this.dialog.open(ProgressSpinnerDialogComponent, {
-    //     panelClass: 'transparent',
-    //     disableClose: true,
-    //   });
     this.sharedProgressSpinner.open();
 
     let url = `${this.connectionSettings.protocol}://${this.connectionSettings.host}:${this.connectionSettings.port}/${this.connectionSettings.path}`;

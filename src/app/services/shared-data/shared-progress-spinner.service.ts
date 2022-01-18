@@ -8,12 +8,8 @@ export class SharedProgressSpinnerService {
 
   constructor(private dialog: MatDialog) {}
 
-  // set(dialogRef: MatDialogRef<ProgressSpinnerDialogComponent>) {
-  //   this.dialogRef = dialogRef;
-  // }
-
   open() {
-    // Show a progress spinner
+    close();
     this.dialogRef = this.dialog.open(ProgressSpinnerDialogComponent, {
       panelClass: 'transparent',
       disableClose: true,
