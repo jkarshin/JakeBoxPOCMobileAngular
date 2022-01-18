@@ -9,10 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialExampleModule } from './material.module';
 import { ConnectionFormComponent } from '../components/connection-form/connection-form.component';
 import { CloseableDialogComponent } from '../components/closeable-dialog/closeable-dialog.component';
+import { LobbyAsLeaderComponent } from '../components/lobby-as-leader/lobby-as-leader.component';
 
 const connectionFormState = {
   name: 'connectionForm',
   component: ConnectionFormComponent,
+};
+
+const lobbyAsLeaderState = {
+  name: 'lobbyAsLeader',
+  component: LobbyAsLeaderComponent,
 };
 
 @NgModule({
@@ -26,7 +32,12 @@ const connectionFormState = {
       useHash: true,
     }),
   ],
-  declarations: [AppComponent, CloseableDialogComponent, ConnectionFormComponent],
+  declarations: [
+    AppComponent,
+    CloseableDialogComponent,
+    ConnectionFormComponent,
+    LobbyAsLeaderComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

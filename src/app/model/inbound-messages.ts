@@ -5,13 +5,15 @@ export interface InboundMessage {
 }
 
 export class PingMessage implements InboundMessage {
-  readonly type = 'PingMessage';
+  static readonly TYPE = 'PingMessage';
+  readonly type = PingMessage.TYPE;
 
   constructor() {}
 }
 
 export class LeaderDetailsMessage implements InboundMessage {
-  readonly type = 'LeaderDetailsMessage';
+  static readonly TYPE = 'LeaderDetailsMessage';
+  readonly type = LeaderDetailsMessage.TYPE;
 
   constructor(
     readonly numQuestionsOptions: number[],
@@ -20,19 +22,22 @@ export class LeaderDetailsMessage implements InboundMessage {
 }
 
 export class PleaseWaitMessage implements InboundMessage {
-  readonly type = 'PleaseWaitMessage';
+  static readonly TYPE = 'PleaseWaitMessage';
+  readonly type = PleaseWaitMessage.TYPE;
 
   constructor(readonly waitText?: string) {}
 }
 
 export class QuestionDetailsMessage implements InboundMessage {
-  readonly type = 'QuestionDetailsMessage';
+  static readonly TYPE = 'QuestionDetailsMessage';
+  readonly type = QuestionDetailsMessage.TYPE;
 
   constructor(readonly questionText: string, readonly answerTexts: string[]) {}
 }
 
 export class PlayAgainPromptMessage implements InboundMessage {
-  readonly type = 'PlayAgainPromptMessage';
+  static readonly TYPE = 'PlayAgainPromptMessage';
+  readonly type = PlayAgainPromptMessage.TYPE;
 
   constructor() {}
 }

@@ -1,7 +1,3 @@
-// *************************************
-// * Message Creation Functions
-// *************************************
-
 import {
   InboundMessage,
   LeaderDetailsMessage,
@@ -10,6 +6,10 @@ import {
   PleaseWaitMessage,
   QuestionDetailsMessage,
 } from '../model/inbound-messages';
+
+// *************************************
+// * Message Creation Functions
+// *************************************
 
 export function createClientConnectionRequestString(name: string): string {
   return JSON.stringify({
