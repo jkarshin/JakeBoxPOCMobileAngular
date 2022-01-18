@@ -13,6 +13,7 @@ import { LobbyAsLeaderComponent } from '../components/lobby-as-leader/lobby-as-l
 import { WaitScreenComponent } from '../components/wait-screen/wait-screen.component';
 import { QuestionDetailsComponent } from '../components/question-details/question-details.component';
 import { PlayAgainPromptComponent } from '../components/play-again-prompt/play-again-prompt.component';
+import { ProgressSpinnerDialogComponent } from '../components/progress-spinner-dialog/progress-spinner-dialog.component';
 
 const states: Ng2StateDeclaration[] = [
   {
@@ -63,6 +64,7 @@ const states: Ng2StateDeclaration[] = [
     ConnectionFormComponent,
     LobbyAsLeaderComponent,
     PlayAgainPromptComponent,
+    ProgressSpinnerDialogComponent,
     QuestionDetailsComponent,
     WaitScreenComponent,
   ],
@@ -71,7 +73,6 @@ const states: Ng2StateDeclaration[] = [
 export class AppModule {
   constructor(stateService: StateService) {
     stateService.go('connectionForm');
-
     /**
      * Uncomment one of the below calls to start app in a different state.
      */
@@ -81,20 +82,17 @@ export class AppModule {
     //     defaultNumQuestionsIndex: 1,
     //   },
     // });
-
     // stateService.go('waitScreen', {
     //   message: {
     //     //waitText: 'Custom wait text',
     //   },
     // });
-
     // stateService.go('questionDetails', {
     //   message: {
     //     questionText: 'Name an answer to this question?',
     //     answerTexts: ['1', 'Some Text', 'FooBar123!@'],
     //   },
     // });
-
     // stateService.go('playAgainPrompt');
   }
 }

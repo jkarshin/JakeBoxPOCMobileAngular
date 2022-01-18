@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import defaultConnectionSettings from '../../../assets/default-connection-settings.json';
 import { ConnectionSettings } from '../../model/connection-settings';
 import { ControllerService } from '../../services/controller.service';
+import { ProgressSpinnerDialogComponent } from '../progress-spinner-dialog/progress-spinner-dialog.component';
 
 @Component({
   selector: 'app-connection-form',
@@ -13,7 +15,10 @@ export class ConnectionFormComponent implements OnInit {
   name: string;
   connectionSettings: ConnectionSettings = {};
 
-  constructor(private controllerService: ControllerService) {}
+  constructor(
+    private controllerService: ControllerService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.connectionSettings = defaultConnectionSettings;
@@ -30,6 +35,13 @@ export class ConnectionFormComponent implements OnInit {
   }
 
   connect() {
+    // Show a progress spinner
+    let dialogRef: MatDialogRef<ProgressSpinnerDialogComponent> =
+      this.dialog.open(ProgressSpinnerDialogComponent, {
+        panelClass: 'transparent',
+        disableClose: true,
+      });
+
     let url = `${this.connectionSettings.protocol}://${this.connectionSettings.host}:${this.connectionSettings.port}/${this.connectionSettings.path}`;
     console.log(`Derived url: ${url}`);
     this.controllerService.connect(this.name, url);
