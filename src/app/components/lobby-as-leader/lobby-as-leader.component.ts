@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Transition } from '@uirouter/core';
 import { LeaderDetailsMessage } from '../../model/inbound-messages';
 
@@ -7,16 +7,10 @@ import { LeaderDetailsMessage } from '../../model/inbound-messages';
   templateUrl: './lobby-as-leader.component.html',
   styleUrls: ['./lobby-as-leader.component.css'],
 })
-export class LobbyAsLeaderComponent implements OnInit {
+export class LobbyAsLeaderComponent {
   message: LeaderDetailsMessage;
-  // testInput: string;
 
   constructor(trans: Transition) {
     this.message = trans.params().message;
-  }
-
-  ngOnInit(): void {
-    console.log('OnInit:');
-    console.log(this.message);
   }
 }

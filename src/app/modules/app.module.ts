@@ -10,19 +10,15 @@ import { MaterialExampleModule } from './material.module';
 import { ConnectionFormComponent } from '../components/connection-form/connection-form.component';
 import { CloseableDialogComponent } from '../components/closeable-dialog/closeable-dialog.component';
 import { LobbyAsLeaderComponent } from '../components/lobby-as-leader/lobby-as-leader.component';
-import { Ng2StateDeclaration } from '@uirouter/angular/interface';
 
 const connectionFormState = {
   name: 'connectionForm',
   component: ConnectionFormComponent,
 };
 
-const lobbyAsLeaderState: Ng2StateDeclaration = {
+const lobbyAsLeaderState = {
   name: 'lobbyAsLeader',
   component: LobbyAsLeaderComponent,
-  /*params: {
-    testInput: { value: '42abc' },
-  },*/
   params: {
     message: { value: null },
   },
