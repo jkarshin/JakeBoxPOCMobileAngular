@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Transition } from '@uirouter/core';
 import { LeaderDetailsMessage } from '../../model/inbound-messages';
 import { WebsocketService } from '../../services/websocket.service';
+import { createStartGameMessage } from '../../utils/message-utils';
 
 @Component({
   selector: 'app-lobby-as-leader',
@@ -28,7 +29,6 @@ export class LobbyAsLeaderComponent {
   }
 
   startGame() {
-    // TODO implement
-    console.log(`NumQuestions: ${this.value}`);
+    this.websocketService.send(createStartGameMessage(this.value));
   }
 }

@@ -55,22 +55,20 @@ const waitScreenState = {
 })
 export class AppModule {
   constructor(stateService: StateService) {
-    // stateService.go('connectionForm');
+    stateService.go('connectionForm');
     /**
      * Uncomment one of the below calls to start app in a different state.
      */
-
     // stateService.go('lobbyAsLeader', {
     //   message: {
     //     numQuestionsOptions: [5, 6, 15],
     //     defaultNumQuestionsIndex: 1,
     //   },
     // });
-
-    stateService.go('waitScreen', {
-      message: {
-        waitText: 'Custom wait text',
-      },
-    });
+    // stateService.go('waitScreen', {
+    //   message: {
+    //     //waitText: 'Custom wait text',
+    //   },
+    // });
   }
 }

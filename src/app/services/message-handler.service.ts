@@ -61,7 +61,7 @@ export class MessageHandlerService {
   }
 
   handlePleaseWait(message: PleaseWaitMessage) {
-    // TODO implement
+    this.stateService.go('waitScreen', { message: message });
   }
 
   handleQuestionDetails(message: QuestionDetailsMessage) {
