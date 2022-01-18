@@ -40,7 +40,16 @@ export class MessageHandlerService {
     );
   }
 
-  handle(message: InboundMessage) {}
+  handle(message: InboundMessage) {
+    let handler = this.handlerMap.get(message.type);
+    if (!handler) {
+      console.error('Received unexpected InboundMessage');
+      console.error(message);
+      return;
+    }
+
+    handler(message);
+  }
 
   handlePing(message: PingMessage) {
     console.log('Processing PingMessage. Sending PongMessage...');
@@ -49,7 +58,7 @@ export class MessageHandlerService {
 
   handleLeaderDetails(message: LeaderDetailsMessage) {
     // TODO pass details to new component
-    this.stateService.go('lobbyAsLeader');
+    this.stateService.go('lobbyAsLeader', message);
   }
 
   handlePleaseWait(message: PleaseWaitMessage) {

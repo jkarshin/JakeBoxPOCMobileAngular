@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StateService } from '@uirouter/core';
 import { CloseableDialogComponent } from '../components/closeable-dialog/closeable-dialog.component';
-import { createClientConnectionRequestString } from '../utils/message-utils';
+import {
+  createClientConnectionRequestString,
+  deserializeMessage,
+} from '../utils/message-utils';
+import { MessageHandlerService } from './message-handler.service';
 import { WebsocketService } from './websocket.service';
 
 @Injectable({ providedIn: 'root' })
 export class ControllerService {
   constructor(
     private websocketService: WebsocketService,
+    private messageHandlerService: MessageHandlerService,
     private stateService: StateService,
     private dialog: MatDialog
   ) {}
@@ -30,9 +35,8 @@ export class ControllerService {
       onConnectionError: (error: any) => {
         this.showDialog(null);
       },
-      onMessage: (messageEvent: any) => {
-        console.log('In custom onMessage');
-        // TODO react to message
+      onMessage: (message: string) => {
+        this.messageHandlerService.handle(deserializeMessage(message));
       },
     });
   }
