@@ -1,15 +1,24 @@
-<span class="mat-display-1">Lobby</span>
+<div class="main-div">
+  <span class="mat-display-1">Lobby</span> <br /><br />
+  <span class="mat-h1">Number of Questions:</span>
+  <br /><br />
 
-<mat-slider
-  class="text-field"
-  color="primary"
-  thumbLabel="true"
-  [min]="min"
-  [max]="max"
-  step="1"
-  [(ngModel)]="value"
-></mat-slider>
+  <mat-slider
+    class="slider"
+    color="primary"
+    thumbLabel="true"
+    [min]="min"
+    [max]="max"
+    step="1"
+    [(ngModel)]="value"
+  ></mat-slider>
 
-<button class="button" mat-raised-button color="primary" (click)="startGame()">
-  Start Game
-</button>
+  <button
+    class="button"
+    mat-raised-button
+    color="primary"
+    (click)="startGame()"
+  >
+    Start Game
+  </button>
+</div>

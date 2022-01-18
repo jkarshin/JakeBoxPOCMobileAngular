@@ -46,5 +46,15 @@ const lobbyAsLeaderState = {
 export class AppModule {
   constructor(stateService: StateService) {
     stateService.go('connectionForm');
+    /**
+     * Uncomment one of the below calls to start app in a different state.
+     */
+
+    // stateService.go('lobbyAsLeader', {
+    //   message: {
+    //     numQuestionsOptions: [5, 6, 15],
+    //     defaultNumQuestionsIndex: 1,
+    //   },
+    // });
   }
 }

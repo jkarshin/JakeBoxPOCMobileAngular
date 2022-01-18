@@ -9,8 +9,6 @@ import { WebsocketService } from '../../services/websocket.service';
   styleUrls: ['./lobby-as-leader.component.css'],
 })
 export class LobbyAsLeaderComponent {
-  //message: LeaderDetailsMessage;
-
   // Customization for the slider
   min: number;
   max: number;
@@ -31,5 +29,6 @@ export class LobbyAsLeaderComponent {
 
   startGame() {
     // TODO implement
+    console.log(`NumQuestions: ${this.value}`);
   }
 }
