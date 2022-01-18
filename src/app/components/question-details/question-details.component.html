@@ -1,0 +1,14 @@
+<div class="main-div">
+  <span class="mat-h4">{{ message.questionText }}</span>
+  <br /><br />
+
+  <button
+    *ngFor="let answer of message.answerTexts; index as i"
+    class="button"
+    mat-raised-button
+    color="primary"
+    (click)="submitAnswer(i)"
+  >
+    {{ answer }}
+  </button>
+</div>

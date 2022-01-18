@@ -65,7 +65,7 @@ export class MessageHandlerService {
   }
 
   handleQuestionDetails(message: QuestionDetailsMessage) {
-    // TODO implement
+    this.stateService.go('questionDetails', { message: message });
   }
 
   handlePlayAgainPrompt(message: PlayAgainPromptMessage) {

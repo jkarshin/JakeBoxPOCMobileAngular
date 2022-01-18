@@ -11,6 +11,7 @@ import { ConnectionFormComponent } from '../components/connection-form/connectio
 import { CloseableDialogComponent } from '../components/closeable-dialog/closeable-dialog.component';
 import { LobbyAsLeaderComponent } from '../components/lobby-as-leader/lobby-as-leader.component';
 import { WaitScreenComponent } from '../components/wait-screen/wait-screen.component';
+import { QuestionDetailsComponent } from '../components/question-details/question-details.component';
 
 const connectionFormState = {
   name: 'connectionForm',
@@ -33,6 +34,14 @@ const waitScreenState = {
   },
 };
 
+const questionDetailsState = {
+  name: 'questionDetails',
+  component: QuestionDetailsComponent,
+  params: {
+    message: { value: null },
+  },
+};
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -40,7 +49,12 @@ const waitScreenState = {
     FormsModule,
     MaterialExampleModule,
     UIRouterModule.forRoot({
-      states: [connectionFormState, lobbyAsLeaderState, waitScreenState],
+      states: [
+        connectionFormState,
+        lobbyAsLeaderState,
+        questionDetailsState,
+        waitScreenState,
+      ],
       useHash: true,
     }),
   ],
@@ -49,13 +63,14 @@ const waitScreenState = {
     CloseableDialogComponent,
     ConnectionFormComponent,
     LobbyAsLeaderComponent,
+    QuestionDetailsComponent,
     WaitScreenComponent,
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(stateService: StateService) {
-    stateService.go('connectionForm');
+    //stateService.go('connectionForm');
     /**
      * Uncomment one of the below calls to start app in a different state.
      */
@@ -65,10 +80,18 @@ export class AppModule {
     //     defaultNumQuestionsIndex: 1,
     //   },
     // });
+
     // stateService.go('waitScreen', {
     //   message: {
     //     //waitText: 'Custom wait text',
     //   },
     // });
+
+    stateService.go('questionDetails', {
+      message: {
+        questionText: 'Name an answer to this question?',
+        answerTexts: ['1', 'Some Text', 'FooBar123!@'],
+      },
+    });
   }
 }
