@@ -10,6 +10,7 @@ import { MaterialExampleModule } from './material.module';
 import { ConnectionFormComponent } from '../components/connection-form/connection-form.component';
 import { CloseableDialogComponent } from '../components/closeable-dialog/closeable-dialog.component';
 import { LobbyAsLeaderComponent } from '../components/lobby-as-leader/lobby-as-leader.component';
+import { WaitScreenComponent } from '../components/wait-screen/wait-screen.component';
 
 const connectionFormState = {
   name: 'connectionForm',
@@ -24,6 +25,14 @@ const lobbyAsLeaderState = {
   },
 };
 
+const waitScreenState = {
+  name: 'waitScreen',
+  component: WaitScreenComponent,
+  params: {
+    message: { value: null },
+  },
+};
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -31,7 +40,7 @@ const lobbyAsLeaderState = {
     FormsModule,
     MaterialExampleModule,
     UIRouterModule.forRoot({
-      states: [connectionFormState, lobbyAsLeaderState],
+      states: [connectionFormState, lobbyAsLeaderState, waitScreenState],
       useHash: true,
     }),
   ],
@@ -40,12 +49,13 @@ const lobbyAsLeaderState = {
     CloseableDialogComponent,
     ConnectionFormComponent,
     LobbyAsLeaderComponent,
+    WaitScreenComponent,
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(stateService: StateService) {
-    stateService.go('connectionForm');
+    // stateService.go('connectionForm');
     /**
      * Uncomment one of the below calls to start app in a different state.
      */
@@ -56,5 +66,11 @@ export class AppModule {
     //     defaultNumQuestionsIndex: 1,
     //   },
     // });
+
+    stateService.go('waitScreen', {
+      message: {
+        waitText: 'Custom wait text',
+      },
+    });
   }
 }
