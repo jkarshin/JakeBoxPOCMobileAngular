@@ -1,4 +1,15 @@
-<p>lobby-as-leader works!</p>
+<span class="mat-display-1">Lobby</span>
 
-<p>Input: {{ message.numQuestionsOptions }}</p>
-<p>Input: {{ message.defaultNumQuestionsIndex }}</p>
+<mat-slider
+  class="text-field"
+  color="primary"
+  thumbLabel="true"
+  [min]="min"
+  [max]="max"
+  step="1"
+  [(ngModel)]="value"
+></mat-slider>
+
+<button class="button" mat-raised-button color="primary" (click)="startGame()">
+  Start Game
+</button>
