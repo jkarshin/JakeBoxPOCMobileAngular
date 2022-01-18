@@ -58,7 +58,8 @@ export class MessageHandlerService {
 
   handleLeaderDetails(message: LeaderDetailsMessage) {
     // TODO pass details to new component
-    this.stateService.go('lobbyAsLeader', message);
+    //this.stateService.go('lobbyAsLeader', message);
+    this.stateService.go('lobbyAsLeader', { testInput: 'myTestInput' });
   }
 
   handlePleaseWait(message: PleaseWaitMessage) {

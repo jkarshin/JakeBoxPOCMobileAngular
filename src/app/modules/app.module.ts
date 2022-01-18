@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from '../components/app/app.component';
-import { Transition, UIRouterModule } from '@uirouter/angular';
+import { UIRouterModule } from '@uirouter/angular';
 import { StateService } from '@uirouter/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialExampleModule } from './material.module';
@@ -20,22 +20,12 @@ const connectionFormState = {
 const lobbyAsLeaderState: Ng2StateDeclaration = {
   name: 'lobbyAsLeader',
   component: LobbyAsLeaderComponent,
+  /*params: {
+    testInput: { value: '42abc' },
+  },*/
   params: {
-    numQuestionsOptions: null,
-    defaultNumQuestionsIndex: null,
+    message: { value: null },
   },
-  /*resolve: [
-    {
-      token: 'message',
-      deps: [Transition],
-      resolveFn: (trans: Transition) => {
-        // TODO remove?
-        console.log('In custom transition code...');
-        console.log(trans.params());
-        return trans.params();
-      },
-    },
-  ],*/
 };
 
 @NgModule({
