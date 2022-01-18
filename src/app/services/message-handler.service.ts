@@ -9,6 +9,7 @@ import {
   QuestionDetailsMessage,
 } from '../model/inbound-messages';
 import { createPongMessageString } from '../utils/message-utils';
+import { SharedProgressSpinnerService } from './shared-data/shared-progress-spinner.service';
 import { WebsocketService } from './websocket.service';
 
 @Injectable({ providedIn: 'root' })
@@ -17,7 +18,8 @@ export class MessageHandlerService {
 
   constructor(
     private websocketService: WebsocketService,
-    private stateService: StateService
+    private stateService: StateService,
+    private sharedProgressSpinner: SharedProgressSpinnerService
   ) {
     this.handlerMap.set(PingMessage.TYPE, (message: InboundMessage) =>
       this.handlePing(message as PingMessage)
@@ -49,6 +51,10 @@ export class MessageHandlerService {
     }
 
     handler(message);
+
+    if (message.type != PingMessage.TYPE) {
+      this.sharedProgressSpinner.close();
+    }
   }
 
   handlePing(message: PingMessage) {

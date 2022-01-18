@@ -14,3 +14,9 @@
 .mat-slider-thumb-label-text {
   opacity: 1 !important;
 }
+
+/* CSS to allow dialog panel to be transparent */
+.transparent .mat-dialog-container {
+  box-shadow: none;
+  background: transparent;
+}
