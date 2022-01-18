@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Transition } from '@uirouter/core';
 import { QuestionDetailsMessage } from '../../model/inbound-messages';
 import { WebsocketService } from '../../services/websocket.service';
+import { createChooseAnswerMessage } from '../../utils/message-utils';
 
 @Component({
   selector: 'app-question-details',
@@ -16,7 +17,6 @@ export class QuestionDetailsComponent {
   }
 
   submitAnswer(answerIndex: number) {
-    // TODO implement
-    console.log(`Submitting answer index ${answerIndex}`);
+    this.websocketService.send(createChooseAnswerMessage(answerIndex));
   }
 }

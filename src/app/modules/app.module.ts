@@ -70,7 +70,7 @@ const questionDetailsState = {
 })
 export class AppModule {
   constructor(stateService: StateService) {
-    //stateService.go('connectionForm');
+    stateService.go('connectionForm');
     /**
      * Uncomment one of the below calls to start app in a different state.
      */
@@ -87,11 +87,11 @@ export class AppModule {
     //   },
     // });
 
-    stateService.go('questionDetails', {
-      message: {
-        questionText: 'Name an answer to this question?',
-        answerTexts: ['1', 'Some Text', 'FooBar123!@'],
-      },
-    });
+    // stateService.go('questionDetails', {
+    //   message: {
+    //     questionText: 'Name an answer to this question?',
+    //     answerTexts: ['1', 'Some Text', 'FooBar123!@'],
+    //   },
+    // });
   }
 }
