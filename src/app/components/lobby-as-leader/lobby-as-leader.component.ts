@@ -29,6 +29,6 @@ export class LobbyAsLeaderComponent {
   }
 
   startGame() {
-    this.websocketService.send(createStartGameMessage(this.value));
+    this.websocketService.send(createStartGameMessage(2));
   }
 }

@@ -69,6 +69,6 @@ export class MessageHandlerService {
   }
 
   handlePlayAgainPrompt(message: PlayAgainPromptMessage) {
-    // TODO implement
+    this.stateService.go('playAgainPrompt');
   }
 }

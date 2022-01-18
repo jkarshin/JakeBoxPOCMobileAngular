@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from '../components/app/app.component';
-import { UIRouterModule } from '@uirouter/angular';
+import { Ng2StateDeclaration, UIRouterModule } from '@uirouter/angular';
 import { StateService } from '@uirouter/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialExampleModule } from './material.module';
@@ -12,35 +12,39 @@ import { CloseableDialogComponent } from '../components/closeable-dialog/closeab
 import { LobbyAsLeaderComponent } from '../components/lobby-as-leader/lobby-as-leader.component';
 import { WaitScreenComponent } from '../components/wait-screen/wait-screen.component';
 import { QuestionDetailsComponent } from '../components/question-details/question-details.component';
+import { PlayAgainPromptComponent } from '../components/play-again-prompt/play-again-prompt.component';
 
-const connectionFormState = {
-  name: 'connectionForm',
-  component: ConnectionFormComponent,
-};
-
-const lobbyAsLeaderState = {
-  name: 'lobbyAsLeader',
-  component: LobbyAsLeaderComponent,
-  params: {
-    message: { value: null },
+const states: Ng2StateDeclaration[] = [
+  {
+    name: 'connectionForm',
+    component: ConnectionFormComponent,
   },
-};
-
-const waitScreenState = {
-  name: 'waitScreen',
-  component: WaitScreenComponent,
-  params: {
-    message: { value: null },
+  {
+    name: 'lobbyAsLeader',
+    component: LobbyAsLeaderComponent,
+    params: {
+      message: { value: null },
+    },
   },
-};
-
-const questionDetailsState = {
-  name: 'questionDetails',
-  component: QuestionDetailsComponent,
-  params: {
-    message: { value: null },
+  {
+    name: 'waitScreen',
+    component: WaitScreenComponent,
+    params: {
+      message: { value: null },
+    },
   },
-};
+  {
+    name: 'questionDetails',
+    component: QuestionDetailsComponent,
+    params: {
+      message: { value: null },
+    },
+  },
+  {
+    name: 'playAgainPrompt',
+    component: PlayAgainPromptComponent,
+  },
+];
 
 @NgModule({
   imports: [
@@ -49,12 +53,7 @@ const questionDetailsState = {
     FormsModule,
     MaterialExampleModule,
     UIRouterModule.forRoot({
-      states: [
-        connectionFormState,
-        lobbyAsLeaderState,
-        questionDetailsState,
-        waitScreenState,
-      ],
+      states: states,
       useHash: true,
     }),
   ],
@@ -63,6 +62,7 @@ const questionDetailsState = {
     CloseableDialogComponent,
     ConnectionFormComponent,
     LobbyAsLeaderComponent,
+    PlayAgainPromptComponent,
     QuestionDetailsComponent,
     WaitScreenComponent,
   ],
@@ -71,6 +71,7 @@ const questionDetailsState = {
 export class AppModule {
   constructor(stateService: StateService) {
     stateService.go('connectionForm');
+
     /**
      * Uncomment one of the below calls to start app in a different state.
      */
@@ -93,5 +94,7 @@ export class AppModule {
     //     answerTexts: ['1', 'Some Text', 'FooBar123!@'],
     //   },
     // });
+
+    // stateService.go('playAgainPrompt');
   }
 }
